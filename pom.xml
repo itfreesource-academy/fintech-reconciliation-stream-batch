@@ -5,17 +5,31 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.itfs.fintech</groupId>
-        <artifactId>fintech-platform-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
     </parent>
 
-    <artifactId>reconciliation-batch-service</artifactId>
-    <name>ITFS FinTech :: High-Throughput Reconciliation Service</name>
-    <description>Virtual Threads &amp; Parallel Streams 100K+ Record Reconciliation Engine (&lt; 30s benchmark)</description>
+    <groupId>com.itfs.fintech</groupId>
+    <artifactId>fintech-reconciliation-stream-batch</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>ITFS FinTech :: Reconciliation Stream Batch</name>
+    <description>High-Throughput Data Reconciliation Utility powered by Java 21 Virtual Threads (&lt;30s benchmark)</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <springdoc.version>2.5.0</springdoc.version>
+    </properties>
 
     <dependencies>
+        <!-- Shared Contracts & DTOs -->
+        <dependency>
+            <groupId>com.itfs.fintech</groupId>
+            <artifactId>fintech-contracts-grpc-dto</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -33,17 +47,25 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
-            <groupId>com.itfs.fintech</groupId>
-            <artifactId>common-dto</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.itfs.fintech</groupId>
-            <artifactId>common-observability</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
